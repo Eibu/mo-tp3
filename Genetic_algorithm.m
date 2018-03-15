@@ -22,9 +22,9 @@ classdef Genetic_algorithm
             pop = evaluate(obj.population);
             while(~obj.stop)
                 p1 = select(pop);
-                p1 = cross(p1);
-                p1 = mutate(p1);
-                p1 = evaluate(p1);
+                popc = cross(p1);
+                popm = mutate(p1);
+                p1 = evaluate([popm popc]);
                 pop = replace(pop,p1);
                 obj = hasToStop(obj,pop);
             end

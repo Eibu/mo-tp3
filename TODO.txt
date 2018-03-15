@@ -1,0 +1,9 @@
+TODO : 
+
+- Faire une fonction de lecture de ficher pour les données
+- Faire la selection par tournoi
+- Faire le remplacement par meilleur fitness
+- Faire la fonction d'évaluation
+
+- Faire les fonctions de mutation
+- Faire les fonctions de croisement
