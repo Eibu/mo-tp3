@@ -2,6 +2,7 @@ classdef genetic_algorithm
     %GENETIC_ALGORITHM 
     properties (Access = private)
         config;
+        dist_matrix;
         population;
         generation_counter;
         stop;
@@ -31,7 +32,7 @@ classdef genetic_algorithm
        
     methods(Access = private)
         function population = evaluate(obj,population)
-            population = obj.config.evaluate(obj.config,population);
+            population = obj.config.evaluate(obj.config, population);
         end
         
         function population = select(obj,population)

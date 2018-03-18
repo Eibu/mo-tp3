@@ -1,35 +1,34 @@
 classdef configuration
-    %CONFIGURATION 
     properties
+        % To be defined by user
         population_size;
         max_generation;
-        pc;
         pm;
-        select;
         cross;
         mutate;
+        
+        pc;
+        select;
         evaluate;
         replace;
         distance_matrix;
     end
     
     methods
-        function obj = configuration(population_size, max_generation, ...
-                pm, select, cross, mutate,evaluate,replace,distance_matrix)
-            
-            %CONFIGURATION 
-            obj.population_size = population_size;
-            obj.max_generation = max_generation;
+        function obj = configuration(countCities, popSize, maxGen, pm, cross, mutate)
+            obj.population_size = popSize;
+            obj.max_generation = maxGen;
             obj.pm = pm;
-            obj.pc = 1-pm;
-            obj.select = select;
+            obj.pc = 1 - pm;
             obj.cross = cross;
             obj.mutate = mutate;
-            obj.evaluate = evaluate;
-            obj.replace = replace;
-            obj.distance_matrix = distance_matrix;
+            
+            obj.select = @(conf, pop) tournament(conf, pop);
+            obj.evaluate = @(dist_matrix, pop) evaluation(dist_matrix, pop);
+            obj.replace = @(conf, p, c) replace_worst(conf, p, c);
+            obj.distance_matrix = generate_distance_matrix(...
+                generate_problem(countCities));
         end
-        
     end
 end
 

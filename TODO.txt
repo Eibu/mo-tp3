@@ -1,10 +1,8 @@
 TODO : 
 
-- Faire une fonction de lecture de ficher pour les données		Kévin
-	- Faire une fonction qui génère la matrice des distance		Kévin
+- Faire la fonction de remplacement                             #
 - Faire la selection par tournoi								Florian
 - Faire le remplacement par meilleur fitness					Florian
-- Faire la fonction d'évaluation								#
-- Faire les fonctions de mutation								Kévin
+- Faire les fonctions de mutation								Kevin
 - Faire les fonctions de croisement								Florian
-- Métriques														#
+- M�triques														#
