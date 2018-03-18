@@ -1,6 +1,6 @@
-classdef Genetic_algorithm
+classdef genetic_algorithm
     %GENETIC_ALGORITHM 
-    properties
+    properties (Access = private)
         config;
         population;
         generation_counter;
@@ -8,28 +8,28 @@ classdef Genetic_algorithm
     end
     
     methods
-        function obj = Genetic_algorithm(config)
+        function obj = genetic_algorithm(config)
             %GENETIC_ALGORITHM Initialize the population and the GA given
             %the configuration
             obj.config = config;
-            obj.population = generate_population(obj.config);
+            obj.population = obj.generate_population(obj.config);
             obj.generation_counter = 1;
-            obj.stop = 0;
         end
         
         function obj = run(obj)
             %RUN main loop of the GA execution
-            pop = evaluate(obj.population);
-            while(~obj.stop)
-                p1 = select(pop);
-                popc = cross(p1);
-                popm = mutate(p1);
-                p1 = evaluate([popm popc]);
-                pop = replace(pop,p1);
-                obj = hasToStop(obj,pop);
+            pop = obj.evaluate(obj.population);
+            while(~obj.hasToStop())
+                p1 = obj.select(pop);
+                popc = obj.cross(p1);
+                popm = obj.mutate(p1);
+                p1 = obj.evaluate([popm popc]);
+                pop = obj.replace(pop,p1);
             end
         end
-        
+    end
+       
+    methods(Access = private)
         function population = evaluate(obj,population)
             population = obj.config.evaluate(obj.config,population);
         end
@@ -50,8 +50,12 @@ classdef Genetic_algorithm
             population = obj.config.replace(obj.config,parents, children);
         end
         
-        function obj = hasToStop(obj,population)
-            obj = obj.config.stopCriterion(obj,population);
+        function boolean = hasToStop(obj)
+            if obj.generation_counter > obj.config.max_generation
+                boolean = true;
+            else
+                boolean = false;
+            end
         end
         
         function population = generate_population(~,config)

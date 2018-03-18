@@ -14,7 +14,9 @@ classdef configuration
     end
     
     methods
-        function obj = configuration(population_size, max_generation,pm,select, cross, mutate,evaluate,replace,distance_matrix)
+        function obj = configuration(population_size, max_generation, ...
+                pm, select, cross, mutate,evaluate,replace,distance_matrix)
+            
             %CONFIGURATION 
             obj.population_size = population_size;
             obj.max_generation = max_generation;
