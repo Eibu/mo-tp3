@@ -15,7 +15,7 @@ classdef configuration
     end
     
     methods
-        function obj = configuration(countCities, popSize, maxGen, pm, cross, mutate)
+        function obj = configuration(problem, popSize, maxGen, pm, cross, mutate)
             obj.population_size = popSize;
             obj.max_generation = maxGen;
             obj.pm = pm;
@@ -26,8 +26,7 @@ classdef configuration
             obj.select = @(conf, pop) tournament(conf, pop);
             obj.evaluate = @(dist_matrix, pop) evaluation(dist_matrix, pop);
             obj.replace = @(conf, p, c) replace_worst(conf, p, c);
-            obj.distance_matrix = generate_distance_matrix(...
-                generate_problem(countCities));
+            obj.distance_matrix = generate_distance_matrix(problem);
         end
     end
 end
