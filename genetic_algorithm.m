@@ -23,7 +23,9 @@ classdef genetic_algorithm
             while(~obj.hasToStop())
                 p1 = obj.select(pop);
                 popc = obj.cross(p1);
+                test_pop(popc); % TODO: Remove for the deliverable
                 popm = obj.mutate(p1);
+                test_pop(popm); % TODO: Remove for the deliverable
                 p1 = obj.evaluate([popm popc]);
                 pop = obj.replace(pop,p1);
             end

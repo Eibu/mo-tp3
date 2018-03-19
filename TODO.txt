@@ -6,5 +6,3 @@ TODO :
 - Faire les fonctions de croisement								Florian
 - Metriques														#
 - Faire le fichier de test                                      Kevin
-- Appliquer des tests sur les chromos                           Kevin
-- Faire le fichier main                                         #
