@@ -2,24 +2,31 @@ classdef genetic_algorithm
     %GENETIC_ALGORITHM 
     properties (Access = private)
         config;
-        dist_matrix;
+    end
+    
+    properties
         population;
         generation_counter;
-        stop;
     end
     
     methods
-        function obj = genetic_algorithm(config)
+        function obj = genetic_algorithm(config, initialPop)
             %GENETIC_ALGORITHM Initialize the population and the GA given
             %the configuration
             obj.config = config;
-            obj.population = obj.generate_population(obj.config);
             obj.generation_counter = 1;
+            
+            if nargin == 2
+                obj.population = initialPop;
+            else
+                obj.population = generate_population(config);
+            end
         end
         
         function obj = run(obj)
             %RUN main loop of the GA execution
             pop = obj.evaluate(obj.population);
+            
             while(~obj.hasToStop())
                 p1 = obj.select(pop);
                 popc = obj.cross(p1);
@@ -27,7 +34,9 @@ classdef genetic_algorithm
                 popm = obj.mutate(p1);
                 test_pop(popm); % TODO: Remove for the deliverable
                 p1 = obj.evaluate([popm popc]);
-                pop = obj.replace(pop,p1);
+                obj.population = obj.replace(pop,p1);
+                
+                obj.generation_counter = obj.generation_counter + 1;
             end
         end
     end
@@ -58,15 +67,6 @@ classdef genetic_algorithm
                 boolean = true;
             else
                 boolean = false;
-            end
-        end
-        
-        function population = generate_population(~,config)
-            population(config.population_size) = individual;
-            N = length(config.distance_matrix);
-            for i =1:config.population_size
-                vars = 2:N;
-                population(i).variables = vars(randperm(N-1));
             end
         end
     end

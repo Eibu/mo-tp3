@@ -6,4 +6,3 @@ TODO :
 - Faire les fonctions de croisement								Florian
 - Metriques														#
 - Faire le fichier de test                                      Kevin
-- Charger/Sauvegarder problème                                  Kevin
