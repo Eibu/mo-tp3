@@ -28,10 +28,8 @@ classdef genetic_algorithm
         function pop = run(obj)
             %RUN main loop of the GA execution
             pop = obj.evaluate(obj.population);
-            
             while(~obj.hasToStop())
                 obj.printStatus();
-                
                 p1 = obj.select(pop);
                 popc = obj.cross(p1);
                 test_pop(popc); % TODO: Remove for the deliverable
@@ -39,7 +37,6 @@ classdef genetic_algorithm
                 test_pop(popm); % TODO: Remove for the deliverable
                 p1 = obj.evaluate([popm popc]);
                 pop = obj.replace(pop,p1);
-                
                 obj.generation_counter = obj.generation_counter + 1;
             end
         end
@@ -67,7 +64,7 @@ classdef genetic_algorithm
         end
         
         function boolean = hasToStop(obj)
-            if obj.generation_counter > obj.config.max_generation
+            if obj.generation_counter >= obj.config.max_generation
                 boolean = true;
             else
                 boolean = false;
@@ -79,8 +76,7 @@ classdef genetic_algorithm
                 fprintf('%s - ', obj.config.toString());
             end
             
-            fprintf('%d ', obj.generation_counter);
-            
+            fprintf('%d ', obj.generation_counter); 
             if obj.generation_counter == obj.config.max_generation
                 fprintf('\n');
             end
