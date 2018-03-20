@@ -30,6 +30,8 @@ classdef genetic_algorithm
             pop = obj.evaluate(obj.population);
             
             while(~obj.hasToStop())
+                obj.printStatus();
+                
                 p1 = obj.select(pop);
                 popc = obj.cross(p1);
                 test_pop(popc); % TODO: Remove for the deliverable
@@ -69,6 +71,18 @@ classdef genetic_algorithm
                 boolean = true;
             else
                 boolean = false;
+            end
+        end
+        
+        function printStatus(obj)            
+            if obj.generation_counter == 1
+                fprintf('%s - ', obj.config.toString());
+            end
+            
+            fprintf('%d ', obj.generation_counter);
+            
+            if obj.generation_counter == obj.config.max_generation
+                fprintf('\n');
             end
         end
     end
