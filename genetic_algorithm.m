@@ -19,11 +19,13 @@ classdef genetic_algorithm
             if nargin == 2
                 obj.population = initialPop;
             else
-                obj.population = generate_population(config);
+                obj.population = generate_population( ...
+                    config.population_size, length(config.problem) ...
+                );
             end
         end
         
-        function obj = run(obj)
+        function pop = run(obj)
             %RUN main loop of the GA execution
             pop = obj.evaluate(obj.population);
             
@@ -34,7 +36,7 @@ classdef genetic_algorithm
                 popm = obj.mutate(p1);
                 test_pop(popm); % TODO: Remove for the deliverable
                 p1 = obj.evaluate([popm popc]);
-                obj.population = obj.replace(pop,p1);
+                pop = obj.replace(pop,p1);
                 
                 obj.generation_counter = obj.generation_counter + 1;
             end

@@ -1,5 +1,6 @@
 function pop = replace_worst(config, parents, children)
     % TODO
-    pop = [parents, children];
+    all = [parents, children];
+    pop = all(1:config.population_size);
 end
 

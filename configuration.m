@@ -11,7 +11,7 @@ classdef configuration
         select;
         evaluate;
         replace;
-        distance_matrix;
+        problem;
     end
     
     methods
@@ -26,7 +26,22 @@ classdef configuration
             obj.select = @(conf, pop) tournament(conf, pop);
             obj.evaluate = @(dist_matrix, pop) evaluation(dist_matrix, pop);
             obj.replace = @(conf, p, c) replace_worst(conf, p, c);
-            obj.distance_matrix = generate_distance_matrix(problem);
+            obj.problem = problem;
+        end
+        
+        function str = toString(obj)
+            pbSize = num2str(length(obj.problem));
+            crossover = configuration.fun2str(obj.cross);
+            mutation = configuration.fun2str(obj.mutate);
+            
+            str = [pbSize, '-', crossover, '/', mutation];
+        end
+    end
+    
+    methods (Static, Access = private)
+        function funStr = fun2str(fun)
+            tokens = regexpi(func2str(fun), '\)\s*(\w+)', 'tokens', 'once');
+            funStr = tokens{1};
         end
     end
 end
