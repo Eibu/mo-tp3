@@ -22,7 +22,10 @@ countMutate = length(mutate);
 %load('metrics.mat')
 metrics = metric(); % Reinitialize accumulated metrics
 
+s = 1;
 while 1 % For each sample
+    fprintf('Sample %d\n', s);
+    
     for i=1:countProblems % For each problem
         initialPop = generate_population(popSize, length(problems{i}));
         
@@ -34,10 +37,12 @@ while 1 % For each sample
                 pop = ga.run();
                 
                 metrics.addFitnessMeasure(curConf, pop);
-                save('metrics.mat', 'metrics');
             end
         end
     end
+    
+    save('metrics.mat', 'metrics');
+    s = s + 1; % Increment sample
 end
 
 metrics.displayGraph();

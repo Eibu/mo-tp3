@@ -4,5 +4,3 @@ TODO :
 - Faire la selection par tournoi								Florian
 - Faire le remplacement par meilleur fitness					Florian
 - Faire les fonctions de croisement								Florian
-- Metriques														#
-- Faire le fichier de test                                      Kevin
