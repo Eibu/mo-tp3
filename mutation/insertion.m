@@ -1,4 +1,7 @@
-function pop = insertion(~, pop)
+function pop = insertion(config, pop)
+    popSize = config.population_size;
+    pop = pop(randperm(popSize, popSize * config.pm));
+    
     for i=1:length(pop)
         vars = pop(i).variables;
         chromoLength = length(vars);

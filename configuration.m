@@ -23,9 +23,9 @@ classdef configuration
             obj.cross = cross;
             obj.mutate = mutate;
             
-            obj.select = @(conf, pop) tournament(conf, pop);
-            obj.evaluate = @(dist_matrix, pop) evaluation(dist_matrix, pop);
-            obj.replace = @(conf, p, c) replace_worst(conf, p, c);
+            obj.select = @tournament;
+            obj.evaluate = @evaluation;
+            obj.replace = @fitness_based_replacement;
             obj.problem = problem;
         end
         

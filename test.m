@@ -42,4 +42,7 @@ end
 
 metrics.displayGraph();
 
-function pop = mockCrossover(~, pop); end
+function pop = mockCrossover(config, pop)
+    popSize = config.population_size;
+    pop = pop(randperm(popSize, popSize * config.pc));
+end
