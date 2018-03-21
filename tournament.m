@@ -12,12 +12,10 @@ end
 population = pop;
 end
 
-function [best,worst] = bestOf(i1,i2)
+function best = bestOf(i1,i2)
 if i1.fitness<i2.fitness
     best = i1;
-    worst = i2;
 else
     best = i2;
-    worst = i1;
 end
 end
