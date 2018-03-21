@@ -104,7 +104,11 @@ classdef metric
                 
                 [~, ~, stats] = kruskalwallis(results, combsKeys);
                 figure
-                disp(multcompare(stats));
+                pvalues = multcompare(stats);
+                
+                format shortE
+                disp(pvalues);
+                format short
             end
         end
     end
