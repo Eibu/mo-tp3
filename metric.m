@@ -86,6 +86,27 @@ classdef metric
                 ylabel("Sample's mean fitnesses");
             end
         end
+        
+        function testHypothesis(obj)
+            % Compare k >= 2 independant sample (Kruskal-Wallis)
+            
+            mappedResults = obj.getMappedResults();
+            problemsKeys = mappedResults.keys;
+            problemsSize = length(problemsKeys);
+                
+            for i=1:problemsSize
+                problemKey = problemsKeys{i};
+                problem = mappedResults(problemKey);
+                
+                combsKeys = problem.keys;                
+                results = problem.values(combsKeys);
+                results = transpose(cell2mat(transpose(results)));
+                
+                [~, ~, stats] = kruskalwallis(results, combsKeys);
+                figure
+                disp(multcompare(stats));
+            end
+        end
     end
     
     methods (Access = private)        

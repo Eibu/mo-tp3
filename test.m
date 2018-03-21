@@ -4,7 +4,7 @@ popSize = 100;
 maxGen = 100;
 pc = 0.1;
 
-problems = {data10, data100};
+problems = {data10, data100, data1000};
 cross = {
     @(conf, pop) mockCrossover(conf, pop)
 };
@@ -45,7 +45,7 @@ while 1 % For each sample
     s = s + 1; % Increment sample
 end
 
-metrics.displayGraph();
+metrics.testHypothesis();
 
 function pop = mockCrossover(config, pop)
     popSize = config.population_size;
