@@ -27,8 +27,3 @@ config = configuration(problem, 100, 100, 0.1, ...
 
 ga = genetic_algorithm(config);
 ga.run();
-
-function pop = mockCrossover(config, pop)
-    popSize = config.population_size;
-    pop = pop(randperm(popSize, popSize * config.pc));
-end

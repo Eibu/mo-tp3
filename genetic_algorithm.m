@@ -7,6 +7,7 @@ classdef genetic_algorithm
     properties
         population;
         generation_counter;
+        stop;
     end
     
     methods
@@ -15,7 +16,7 @@ classdef genetic_algorithm
             %the configuration
             obj.config = config;
             obj.generation_counter = 1;
-            
+            obj.stop = false;
             if nargin == 2
                 obj.population = initialPop;
             else
@@ -28,7 +29,7 @@ classdef genetic_algorithm
         function pop = run(obj)
             %RUN main loop of the GA execution
             pop = obj.evaluate(obj.population);
-            while(~obj.hasToStop())
+            while(~obj.stop)
                 obj.printStatus();
                 p1 = obj.select(pop);
                 popc = obj.cross(p1);
@@ -37,7 +38,7 @@ classdef genetic_algorithm
                 test_pop(popm); % TODO: Remove for the deliverable
                 p1 = obj.evaluate([popm popc]);
                 pop = obj.replace(pop,p1);
-                obj.generation_counter = obj.generation_counter + 1;
+                obj = obj.hasToStop();
             end
         end
     end
@@ -63,11 +64,12 @@ classdef genetic_algorithm
             population = obj.config.replace(obj.config,parents, children);
         end
         
-        function boolean = hasToStop(obj)
-            if obj.generation_counter >= obj.config.max_generation
-                boolean = true;
+        function obj = hasToStop(obj)
+            obj.generation_counter = obj.generation_counter + 1;
+            if obj.generation_counter > obj.config.max_generation
+                obj.stop = true;
             else
-                boolean = false;
+                obj.stop  = false;
             end
         end
         

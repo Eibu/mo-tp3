@@ -1,6 +1,6 @@
 classdef configuration
     properties
-        % To be defined by user
+        % Defined by user
         population_size;
         max_generation;
         pm;
@@ -40,7 +40,7 @@ classdef configuration
     
     methods (Static, Access = private)
         function funStr = fun2str(fun)
-            tokens = regexpi(func2str(fun), '\)\s*(\w+)', 'tokens', 'once');
+            tokens = regexpi(func2str(fun), '\s*(\w+)', 'tokens', 'once');
             funStr = tokens{1};
         end
     end
