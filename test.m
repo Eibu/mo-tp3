@@ -4,7 +4,7 @@ popSize = 100;
 maxGen = 100;
 pc = 0.1;
 
-problems = {data10, data100, data1000};
+problems = { data1000 };
 cross = {
     @partial_crossover, ...
     @position_crossover, ...
@@ -43,13 +43,8 @@ while 1 % For each sample
         end
     end
     
-    save('metrics.mat', 'metrics');
+    save('metrics1000.mat', 'metrics');
     s = s + 1; % Increment sample
 end
 
 metrics.testHypothesis();
-
-function pop = mockCrossover(config, pop)
-    popSize = config.population_size;
-    pop = pop(randperm(popSize, popSize * config.pc));
-end

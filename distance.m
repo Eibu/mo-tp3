@@ -1,5 +1,4 @@
 function dist = distance(city1, city2)
-    to = city2 - city1;
-    dist = sqrt(sum(to.^2));
+    dist = (city2(1)-city1(1))^2 + (city2(2)-city1(2))^2;
 end
 

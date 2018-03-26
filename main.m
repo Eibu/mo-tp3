@@ -4,7 +4,7 @@ load('data.mat');
 % PROBLEM LOAD METHOD (let only one commented)
 % ----------------------------------------------------------------------
 % Load an existant problem (data10, ...100, ...1000, ...10000, ...100000
-problem = data10;
+problem = data100;
 % ----------------------------------------------------------------------
 % Generate a new problem with param as count cities (must be >= 4)
 %problem = generate_problem(4);
@@ -26,4 +26,4 @@ config = configuration(problem, 100, 100, 0.1, ...
 % ================================================================
 
 ga = genetic_algorithm(config);
-ga.run();
+pop = ga.run();

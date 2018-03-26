@@ -30,7 +30,9 @@ classdef metric
             if ~obj.data.isKey(confKey) % Initialize if conf not present
                 obj.data(confKey) = [];
             end
-            obj.data(confKey) = [obj.data(confKey), bestFitness]; % Append
+            
+            bestDistance = sqrt(bestFitness); % Fitness is distance^2
+            obj.data(confKey) = [obj.data(confKey), bestDistance]; % Append
         end
         
         function displayGraph(obj)
