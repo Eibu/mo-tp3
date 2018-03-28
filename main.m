@@ -27,3 +27,9 @@ config = configuration(problem, 100, 100, 0.1, ...
 
 ga = genetic_algorithm(config);
 pop = ga.run();
+
+%Displays the hamilton cycle (Warning not quite clear for big problems, 
+%   quite artistic though.)
+%Param 1: The best individual
+%Param 2: The configuration
+hamilton_cycle(pop(1),config);
