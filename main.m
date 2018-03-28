@@ -3,7 +3,7 @@ load('data.mat');
 % ======================================================================
 % PROBLEM LOAD METHOD (let only one commented)
 % ----------------------------------------------------------------------
-% Load an existant problem (data10, ...100, ...1000, ...10000, ...100000
+% Load an existant problem (data10, ...100, ...500, ...1000, ...10000, ...100000
 problem = data100;
 % ----------------------------------------------------------------------
 % Generate a new problem with param as count cities (must be >= 4)
@@ -21,7 +21,7 @@ problem = data100;
 % Param 6: Mutation function
 config = configuration(problem, 100, 100, 0.1, ...
     @position_crossover, ...
-    @move ...
+    @exchange ...
 );
 % ================================================================
 

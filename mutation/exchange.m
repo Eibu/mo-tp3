@@ -1,6 +1,7 @@
 function pop = exchange(config, pop)
     popSize = config.population_size;
-    pop = pop(randperm(popSize, popSize * config.pm));
+    % Extract population to mutate
+    pop = pop(randperm(popSize, ceil(popSize * config.pm)));
     
     for i=1:length(pop)
         vars = pop(i).variables;

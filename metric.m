@@ -108,6 +108,15 @@ classdef metric
                 figure
                 pvalues = multcompare(stats);
                 
+                myTable = nan(12, 12);
+                for K=1:length(pvalues)
+                    I = pvalues(K, 1);
+                    J = pvalues(K, 2);
+                    val = pvalues(K, 6);
+                    
+                    myTable(I, J) = val;
+                end
+                
                 format shortE
                 disp(pvalues);
                 format short
